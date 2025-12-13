@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDBC Database Demo | Manoj Kumar - 238W1A1267</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .demo-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        .output-block {
+            background: #1a202c;
+            color: #68d391;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+        }
+        .week-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            border-left: 5px solid #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 0 15px 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-database"></i>
+                <h1>JDBC Database Demo</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Back to Main
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="section active">
+            <div class="container">
+                <div class="welcome-banner">
+                    <h2>🗄️ Advanced Java JDBC Implementation</h2>
+                    <p>Developer: <strong>Manoj Kumar</strong> | Roll: <strong>238W1A1267</strong></p>
+                    <p class="subtitle">Database Connectivity & Operations Demo</p>
+                </div>
+
+                <div class="week-section">
+                    <h2>📚 Week 1: JDBC Fundamentals</h2>
+                    
+                    <div class="demo-container">
+                        <h3>🔗 1. JDBC Connection Setup</h3>
+                        <p><strong>Objective:</strong> Establish basic connection to MySQL database</p>
+                        
+                        <div class="code-block">
+package com.mycompany.mavenproject2;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String username = "root";
+        String password = "";
+        
+        try {
+            // Load MySQL JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            // Establish connection
+            Connection con = DriverManager.getConnection(url, username, password);
+            System.out.println("Connected to the database successfully!");
+            con.close();
+        } catch (ClassNotFoundException e) {
+            System.err.println("JDBC Driver not found: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Database error: " + e.getMessage());
+        }
+    }
+}
+                        </div>
+                        
+                        <div class="output-block">
+Connected to the database successfully!
+                        </div>
+                        
+                        <p><strong>📸 Screenshots:</strong> 233238, 233253</p>
+                    </div>
+
+                    <div class="demo-container">
+                        <h3>📝 2. Statement Interface Operations</h3>
+                        <p><strong>Objective:</strong> Insert and retrieve data using Statement interface</p>
+                        
+                        <div class="code-block">
+package com.mycompany.mavenproject2;
+import java.sql.*;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String username = "root";
+        String password = "";
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, username, password);
+            Statement stmt = con.createStatement();
+            
+            // Insert data
+            String insertQuery = "INSERT INTO students (name, age) VALUES ('Manoj Kumar', 20)";
+            int rows = stmt.executeUpdate(insertQuery);
+            System.out.println(rows + " record inserted.");
+            
+            // Retrieve data
+            String selectQuery = "SELECT * FROM students";
+            ResultSet rs = stmt.executeQuery(selectQuery);
+            System.out.println("Student Records:");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " | " + 
+                                 rs.getString("name") + " | " + 
+                                 rs.getInt("age"));
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+                        </div>
+                        
+                        <div class="output-block">
+1 record inserted.
+Student Records:
+1 | Manoj Kumar | 20
+                        </div>
+                    </div>
+                </div>
+
+                <div class="week-section">
+                    <h2>🔧 Week 2: Advanced JDBC Operations</h2>
+                    
+                    <div class="demo-container">
+                        <h3>🛠️ 1. PreparedStatement CRUD Operations</h3>
+                        <p><strong>Objective:</strong> Perform Insert, Update, Delete using PreparedStatement</p>
+                        
+                        <div class="code-block">
+package com.mycompany.mavenproject2;
+import java.sql.*;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String user = "root";
+        String password = "";
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected!");
+            
+            // INSERT
+            String insertSQL = "INSERT INTO Person (PersonID, FirstName, City) VALUES (?, ?, ?)";
+            PreparedStatement insertStmt = con.prepareStatement(insertSQL);
+            insertStmt.setInt(1, 101);
+            insertStmt.setString(2, "Manoj Kumar");
+            insertStmt.setString(3, "Hyderabad");
+            int insertCount = insertStmt.executeUpdate();
+            System.out.println(insertCount + " row inserted.");
+            
+            // UPDATE
+            String updateSQL = "UPDATE Person SET City=? WHERE PersonID=?";
+            PreparedStatement updateStmt = con.prepareStatement(updateSQL);
+            updateStmt.setString(1, "Bangalore");
+            updateStmt.setInt(2, 101);
+            int updateCount = updateStmt.executeUpdate();
+            System.out.println(updateCount + " row updated.");
+            
+            // DELETE
+            String deleteSQL = "DELETE FROM Person WHERE PersonID=?";
+            PreparedStatement deleteStmt = con.prepareStatement(deleteSQL);
+            deleteStmt.setInt(1, 101);
+            int deleteCount = deleteStmt.executeUpdate();
+            System.out.println(deleteCount + " row deleted.");
+            
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+    }
+}
+                        </div>
+                        
+                        <div class="output-block">
+Connected!
+1 row inserted.
+1 row updated.
+1 row deleted.
+                        </div>
+                    </div>
+
+                    <div class="demo-container">
+                        <h3>🧭 2. ResultSet Navigation Methods</h3>
+                        <p><strong>Objective:</strong> Explore ResultSet navigation and tabular data formatting</p>
+                        
+                        <div class="code-block">
+package com.mycompany.mavenproject2;
+import java.sql.*;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String user = "root";
+        String password = "";
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY
+            );
+            
+            ResultSet rs = stmt.executeQuery("SELECT PersonID, FirstName, City FROM Person");
+            
+            // Print table header
+            System.out.println("--------------------------------------------------");
+            System.out.printf("%-10s %-15s %-15s\n", "ID", "Name", "City");
+            System.out.println("--------------------------------------------------");
+            
+            // Move to first record
+            if (rs.first()) {
+                do {
+                    System.out.printf("%-10d %-15s %-15s\n",
+                        rs.getInt("PersonID"),
+                        rs.getString("FirstName"),
+                        rs.getString("City")
+                    );
+                } while (rs.next());
+            }
+            System.out.println("--------------------------------------------------");
+            
+            // Navigation examples
+            if (rs.last()) {
+                System.out.println("Last Record → " + rs.getString("FirstName"));
+            }
+            if (rs.first()) {
+                System.out.println("First Record → " + rs.getString("FirstName"));
+            }
+            if (rs.absolute(2)) {
+                System.out.println("2nd Row → " + rs.getString("FirstName"));
+            }
+            
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error : " + e);
+        }
+    }
+}
+                        </div>
+                        
+                        <div class="output-block">
+--------------------------------------------------
+ID         Name            City           
+--------------------------------------------------
+101        Manoj Kumar     Hyderabad      
+102        Rahul          Bangalore      
+103        Priya          Mumbai         
+--------------------------------------------------
+Last Record → Priya
+First Record → Manoj Kumar
+2nd Row → Rahul
+                        </div>
+                        
+                        <p><strong>📸 Screenshots:</strong> 233304, 233316</p>
+                    </div>
+                </div>
+
+                <div class="demo-container">
+                    <h2>🎯 Key Learning Outcomes</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-plug"></i>
+                            <h3>JDBC Connection</h3>
+                            <p>Database Connectivity</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-code"></i>
+                            <h3>Statement Interface</h3>
+                            <p>SQL Execution</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>PreparedStatement</h3>
+                            <p>Secure Operations</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-table"></i>
+                            <h3>ResultSet Navigation</h3>
+                            <p>Data Retrieval</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Highlight code blocks on hover
+            const codeBlocks = document.querySelectorAll('.code-block');
+            codeBlocks.forEach(block => {
+                block.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                block.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

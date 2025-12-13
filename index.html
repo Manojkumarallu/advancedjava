@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Java Lab - Manoj Kumar (238W1A1267)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fab fa-java"></i>
+                <span>Advanced Java Lab</span>
+            </div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-book"></i> Lab Weeks</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-week="week1">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Week 1 - JDBC Basics</span>
+                </li>
+                <li class="menu-item" data-week="week2">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Week 2 - PreparedStatement</span>
+                </li>
+                <li class="menu-item" data-week="week3">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Week 3 - CallableStatement</span>
+                </li>
+                <li class="menu-item" data-week="week4">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Week 4 - Servlets</span>
+                </li>
+                <li class="menu-item" data-week="week5">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Week 5 - Request Handling</span>
+                </li>
+                <li class="menu-item" data-week="students">
+                    <i class="fas fa-users"></i>
+                    <span>Student Records</span>
+                </li>
+                <li class="menu-item" data-week="add-student">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Add Student</span>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="content-header">
+                <h1 id="content-title">Advanced Java Lab - Foundation to Advanced</h1>
+                <p class="content-subtitle">Manoj Kumar - Roll Number: 238W1A1267</p>
+            </div>
+
+            <div class="content-body" id="content-body">
+
+                <!-- Week 1 Content -->
+                <div class="week-content active" id="week1">
+                    <div class="week1-banner">
+                        <div class="banner-content">
+                            <h2><i class="fas fa-database"></i> Week 1: JDBC Fundamentals</h2>
+                            <p class="banner-subtitle">Master Database Connectivity & Statement Interface</p>
+                            <div class="objectives-grid">
+                                <div class="objective-item">
+                                    <i class="fas fa-plug"></i>
+                                    <span>Database Connection</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Statement Interface</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-table"></i>
+                                    <span>CRUD Operations</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-image">
+                            <img src="Screenshot 2025-11-25 233238.png" alt="Week 1 Overview" onclick="openModal(this)">
+                        </div>
+                    </div>
+
+                    <div class="concept-overview">
+                        <h3><i class="fas fa-lightbulb"></i> JDBC Architecture Overview</h3>
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-plug"></i>
+                                </div>
+                                <h4>JDBC Driver</h4>
+                                <p>Bridge between Java application and database, enabling seamless communication through standardized API.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <h4>Connection Management</h4>
+                                <p>Establishing, maintaining, and properly closing database connections for efficient resource utilization.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-terminal"></i>
+                                </div>
+                                <h4>Statement Execution</h4>
+                                <p>Dynamic SQL execution using Statement interface for INSERT, SELECT, UPDATE, and DELETE operations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-section">
+                        <h3><i class="fas fa-cogs"></i> Environment Setup</h3>
+                        <div class="setup-grid">
+                            <div class="setup-card">
+                                <div class="setup-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <h4>Required Software</h4>
+                                <ul class="setup-list">
+                                    <li>MySQL Server (Community Edition)</li>
+                                    <li>MySQL JDBC Driver (mysql-connector-java)</li>
+                                    <li>Java IDE (NetBeans/Eclipse/IntelliJ)</li>
+                                    <li>Java JDK 8+</li>
+                                </ul>
+                            </div>
+                            <div class="setup-card">
+                                <div class="setup-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h4>Database Configuration</h4>
+                                <div class="code-snippet">
+                                    <code>CREATE DATABASE mydb;</code>
+                                    <code>USE mydb;</code>
+                                    <code>CREATE TABLE students (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50), age INT);</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">01</div>
+                            <div class="program-info">
+                                <h3>Basic JDBC Connection</h3>
+                                <p>Establish secure connection to MySQL database</p>
+                            </div>
+                        </div>
+
+                        <div class="connection-flow">
+                            <h4><i class="fas fa-route"></i> Connection Flow</h4>
+                            <div class="flow-steps">
+                                <div class="flow-step">
+                                    <div class="flow-number">1</div>
+                                    <div class="flow-content">
+                                        <h5>Load Driver</h5>
+                                        <p>Register MySQL JDBC driver with DriverManager</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="flow-number">2</div>
+                                    <div class="flow-content">
+                                        <h5>Connect</h5>
+                                        <p>Establish connection using URL and credentials</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="flow-number">3</div>
+                                    <div class="flow-content">
+                                        <h5>Execute</h5>
+                                        <p>Perform database operations</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="flow-number">4</div>
+                                    <div class="flow-content">
+                                        <h5>Close</h5>
+                                        <p>Release resources and close connection</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="connection-code">Connection Code</button>
+                                <button class="tab-btn" data-tab="url-breakdown">URL Breakdown</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="connection-code">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> Mavenproject2.java - Basic Connection</span>
+                                    <button class="copy-btn" onclick="copyCode('basic-connection')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="basic-connection"><code>package com.mycompany.mavenproject2;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        // Step 1: Define connection parameters
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String username = "root";
+        String password = "";
+        
+        try {
+            // Step 2: Load MySQL JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            // Step 3: Establish connection
+            Connection con = DriverManager.getConnection(url, username, password);
+            System.out.println("Connected to the database successfully!");
+            
+            // Step 4: Close connection to free resources
+            con.close();
+        } catch (ClassNotFoundException e) {
+            System.err.println("JDBC Driver not found: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Database error: " + e.getMessage());
+        }
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="url-breakdown">
+                                <div class="url-analysis">
+                                    <h5><i class="fas fa-link"></i> JDBC URL Components</h5>
+                                    <div class="url-parts">
+                                        <div class="url-part">
+                                            <div class="part-label">Protocol</div>
+                                            <div class="part-value">jdbc</div>
+                                            <div class="part-desc">Java Database Connectivity standard</div>
+                                        </div>
+                                        <div class="url-separator">:</div>
+                                        <div class="url-part">
+                                            <div class="part-label">Subprotocol</div>
+                                            <div class="part-value">mysql</div>
+                                            <div class="part-desc">Database vendor (MySQL)</div>
+                                        </div>
+                                        <div class="url-separator">://</div>
+                                        <div class="url-part">
+                                            <div class="part-label">Host</div>
+                                            <div class="part-value">localhost</div>
+                                            <div class="part-desc">Server location</div>
+                                        </div>
+                                        <div class="url-separator">:</div>
+                                        <div class="url-part">
+                                            <div class="part-label">Port</div>
+                                            <div class="part-value">3306</div>
+                                            <div class="part-desc">MySQL default port</div>
+                                        </div>
+                                        <div class="url-separator">/</div>
+                                        <div class="url-part">
+                                            <div class="part-label">Database</div>
+                                            <div class="part-value">mydb</div>
+                                            <div class="part-desc">Target database name</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="output-showcase">
+                            <h4><i class="fas fa-terminal"></i> Program Output</h4>
+                            <div class="output-container">
+                                <div class="output-image">
+                                    <img src="Screenshot 2025-11-25 233253.png" alt="Connection Output" onclick="openModal(this)">
+                                </div>
+                                <div class="output-details">
+                                    <h5>Connection Success:</h5>
+                                    <div class="result-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Connected to the database successfully!</span>
+                                    </div>
+                                    <div class="connection-info">
+                                        <h6>Connection Details:</h6>
+                                        <ul>
+                                            <li><strong>Database:</strong> mydb</li>
+                                            <li><strong>Host:</strong> localhost:3306</li>
+                                            <li><strong>Driver:</strong> MySQL Connector/J</li>
+                                            <li><strong>Status:</strong> Active Connection</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">02</div>
+                            <div class="program-info">
+                                <h3>Statement Interface Operations</h3>
+                                <p>Dynamic SQL execution for INSERT and SELECT operations</p>
+                            </div>
+                        </div>
+
+                        <div class="operations-guide">
+                            <h4><i class="fas fa-cogs"></i> Statement Operations</h4>
+                            <div class="operations-grid">
+                                <div class="operation-card">
+                                    <div class="operation-icon">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <h5>INSERT</h5>
+                                    <p>Add new records to database tables</p>
+                                    <code>executeUpdate()</code>
+                                </div>
+                                <div class="operation-card">
+                                    <div class="operation-icon">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <h5>SELECT</h5>
+                                    <p>Retrieve data from database tables</p>
+                                    <code>executeQuery()</code>
+                                </div>
+                                <div class="operation-card">
+                                    <div class="operation-icon">
+                                        <i class="fas fa-table"></i>
+                                    </div>
+                                    <h5>ResultSet</h5>
+                                    <p>Navigate and process query results</p>
+                                    <code>rs.next()</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="statement-code">Statement Code</button>
+                                <button class="tab-btn" data-tab="methods-guide">Methods Guide</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="statement-code">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> Mavenproject2.java - Statement Operations</span>
+                                    <button class="copy-btn" onclick="copyCode('statement-ops')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="statement-ops"><code>package com.mycompany.mavenproject2;
+import java.sql.*;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        // Connection parameters
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String username = "root";
+        String password = "";
+        
+        try {
+            // Step 1: Load driver and establish connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, username, password);
+            
+            // Step 2: Create Statement object
+            Statement stmt = con.createStatement();
+            
+            // Step 3: Execute INSERT operation
+            String insertQuery = "INSERT INTO students (name, age) VALUES ('Manoj Kumar', 20)";
+            int rows = stmt.executeUpdate(insertQuery);
+            System.out.println(rows + " record inserted.");
+            
+            // Step 4: Execute SELECT operation
+            String selectQuery = "SELECT * FROM students";
+            ResultSet rs = stmt.executeQuery(selectQuery);
+            
+            // Step 5: Process ResultSet
+            System.out.println("Student Records:");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " | " +
+                                 rs.getString("name") + " | " +
+                                 rs.getInt("age"));
+            }
+            
+            // Step 6: Close resources
+            rs.close();
+            stmt.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="methods-guide">
+                                <div class="methods-comparison">
+                                    <h5><i class="fas fa-tools"></i> Statement Methods Comparison</h5>
+                                    <div class="comparison-table-container">
+                                        <table class="modern-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Method</th>
+                                                    <th>Purpose</th>
+                                                    <th>Return Type</th>
+                                                    <th>SQL Types</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>executeUpdate()</code></td>
+                                                    <td>Modify database data</td>
+                                                    <td>int (rows affected)</td>
+                                                    <td>INSERT, UPDATE, DELETE</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>executeQuery()</code></td>
+                                                    <td>Retrieve database data</td>
+                                                    <td>ResultSet</td>
+                                                    <td>SELECT</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>execute()</code></td>
+                                                    <td>Execute any SQL statement</td>
+                                                    <td>boolean</td>
+                                                    <td>DDL, DML, DCL</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <h5><i class="fas fa-database"></i> ResultSet Navigation</h5>
+                                    <div class="navigation-tips">
+                                        <div class="tip-item">
+                                            <i class="fas fa-arrow-right"></i>
+                                            <strong>rs.next():</strong> Moves cursor forward, returns boolean
+                                        </div>
+                                        <div class="tip-item">
+                                            <i class="fas fa-arrow-right"></i>
+                                            <strong>rs.getInt():</strong> Retrieves integer column value
+                                        </div>
+                                        <div class="tip-item">
+                                            <i class="fas fa-arrow-right"></i>
+                                            <strong>rs.getString():</strong> Retrieves string column value
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="troubleshooting-section">
+                        <h3><i class="fas fa-wrench"></i> Troubleshooting Guide</h3>
+                        <div class="issues-grid">
+                            <div class="issue-card">
+                                <div class="issue-icon error">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <h4>ClassNotFoundException</h4>
+                                <p><strong>Cause:</strong> JDBC driver not in classpath</p>
+                                <p><strong>Solution:</strong> Add mysql-connector-java.jar to project libraries</p>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-icon warning">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <h4>Access Denied</h4>
+                                <p><strong>Cause:</strong> Wrong username/password</p>
+                                <p><strong>Solution:</strong> Verify MySQL credentials and permissions</p>
+                            </div>
+                            <div class="issue-card">
+                                <div class="issue-icon info">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <h4>Connection Refused</h4>
+                                <p><strong>Cause:</strong> MySQL server not running</p>
+                                <p><strong>Solution:</strong> Start MySQL service on port 3306</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="learning-outcomes">
+                        <h3><i class="fas fa-graduation-cap"></i> Learning Achievements</h3>
+                        <div class="outcomes-grid">
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>JDBC Architecture Mastery</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Driver Management Skills</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Connection Handling Expertise</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Statement Execution Proficiency</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>ResultSet Processing Knowledge</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Exception Handling Best Practices</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 2 Content -->
+                <div class="week-content" id="week2">
+                    <div class="week2-banner">
+                        <div class="banner-content">
+                            <h2><i class="fas fa-cogs"></i> Week 2: Advanced JDBC Operations</h2>
+                            <p class="banner-subtitle">Master PreparedStatement & ResultSet Navigation Techniques</p>
+                            <div class="objectives-grid">
+                                <div class="objective-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Secure SQL Operations</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-arrows-alt"></i>
+                                    <span>ResultSet Navigation</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-table"></i>
+                                    <span>Tabular Data Display</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-image">
+                            <img src="Screenshot 2025-11-25 233339.png" alt="Week 2 Overview" onclick="openModal(this)">
+                        </div>
+                    </div>
+
+                    <div class="concept-overview">
+                        <h3><i class="fas fa-lightbulb"></i> Core Concepts Overview</h3>
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <h4>PreparedStatement</h4>
+                                <p>Precompiled SQL statements that prevent SQL injection and improve performance through parameter binding.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-compass"></i>
+                                </div>
+                                <h4>ResultSet Navigation</h4>
+                                <p>Advanced cursor movement techniques for flexible data retrieval and manipulation in database result sets.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h4>CRUD Operations</h4>
+                                <p>Complete Create, Read, Update, Delete operations using secure and efficient database programming practices.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">01</div>
+                            <div class="program-info">
+                                <h3>PreparedStatement CRUD Operations</h3>
+                                <p>Secure database operations using parameterized queries</p>
+                            </div>
+                        </div>
+
+                        <div class="step-by-step">
+                            <h4><i class="fas fa-list-ol"></i> Implementation Steps</h4>
+                            <div class="steps-container">
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h5>Database Connection Setup</h5>
+                                        <p>Establish secure connection to MySQL database using JDBC driver</p>
+                                        <code>Connection con = DriverManager.getConnection(url, user, password);</code>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h5>INSERT Operation</h5>
+                                        <p>Create PreparedStatement with placeholders (?) for secure parameter binding</p>
+                                        <code>PreparedStatement insertStmt = con.prepareStatement(insertSQL);</code>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h5>UPDATE Operation</h5>
+                                        <p>Modify existing records using parameterized WHERE clause conditions</p>
+                                        <code>updateStmt.setString(1, "Bangalore"); updateStmt.setInt(2, 101);</code>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h5>DELETE Operation</h5>
+                                        <p>Remove records safely using prepared statements with parameter validation</p>
+                                        <code>deleteStmt.setInt(1, 101); int deleteCount = deleteStmt.executeUpdate();</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="full-code">Complete Code</button>
+                                <button class="tab-btn" data-tab="explanation">Detailed Explanation</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="full-code">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> Mavenproject2.java - PreparedStatement CRUD</span>
+                                    <button class="copy-btn" onclick="copyCode('prepared-crud')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="prepared-crud"><code>package com.mycompany.mavenproject2;
+import java.sql.*;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        // Database connection parameters
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String user = "root";
+        String password = "";
+        
+        try {
+            // Step 1: Load JDBC driver and establish connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected!");
+            
+            // Step 2: INSERT Operation with PreparedStatement
+            String insertSQL = "INSERT INTO Person (PersonID, FirstName, City) VALUES (?, ?, ?)";
+            PreparedStatement insertStmt = con.prepareStatement(insertSQL);
+            insertStmt.setInt(1, 101);              // Set PersonID parameter
+            insertStmt.setString(2, "Rahul");        // Set FirstName parameter
+            insertStmt.setString(3, "Hyderabad");    // Set City parameter
+            int insertCount = insertStmt.executeUpdate();
+            System.out.println(insertCount + " row inserted.");
+            
+            // Step 3: UPDATE Operation with PreparedStatement
+            String updateSQL = "UPDATE Person SET City=? WHERE PersonID=?";
+            PreparedStatement updateStmt = con.prepareStatement(updateSQL);
+            updateStmt.setString(1, "Bangalore");    // New city value
+            updateStmt.setInt(2, 101);               // WHERE condition
+            int updateCount = updateStmt.executeUpdate();
+            System.out.println(updateCount + " row updated.");
+            
+            // Step 4: DELETE Operation with PreparedStatement
+            String deleteSQL = "DELETE FROM Person WHERE PersonID=?";
+            PreparedStatement deleteStmt = con.prepareStatement(deleteSQL);
+            deleteStmt.setInt(1, 101);               // WHERE condition
+            int deleteCount = deleteStmt.executeUpdate();
+            System.out.println(deleteCount + " row deleted.");
+            
+            // Step 5: Close connection and free resources
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="explanation">
+                                <div class="explanation-grid">
+                                    <div class="explanation-card">
+                                        <h5><i class="fas fa-shield-alt"></i> Security Benefits</h5>
+                                        <ul>
+                                            <li><strong>SQL Injection Prevention:</strong> Parameters are safely escaped</li>
+                                            <li><strong>Type Safety:</strong> setInt(), setString() ensure correct data types</li>
+                                            <li><strong>Input Validation:</strong> Automatic parameter validation</li>
+                                        </ul>
+                                    </div>
+                                    <div class="explanation-card">
+                                        <h5><i class="fas fa-tachometer-alt"></i> Performance Advantages</h5>
+                                        <ul>
+                                            <li><strong>Precompilation:</strong> SQL is parsed and compiled once</li>
+                                            <li><strong>Reusability:</strong> Same statement with different parameters</li>
+                                            <li><strong>Optimization:</strong> Database can optimize execution plan</li>
+                                        </ul>
+                                    </div>
+                                    <div class="explanation-card">
+                                        <h5><i class="fas fa-code"></i> Parameter Binding</h5>
+                                        <ul>
+                                            <li><strong>Placeholder (?):</strong> Represents parameter position</li>
+                                            <li><strong>Index-based:</strong> Parameters numbered from 1</li>
+                                            <li><strong>Type-specific:</strong> setInt(), setString(), setDate() methods</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="output-showcase">
+                            <h4><i class="fas fa-terminal"></i> Program Output</h4>
+                            <div class="output-container">
+                                <div class="output-image">
+                                    <img src="Screenshot 2025-11-25 233316.png" alt="PreparedStatement Output" onclick="openModal(this)">
+                                </div>
+                                <div class="output-details">
+                                    <h5>Expected Results:</h5>
+                                    <div class="result-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Connected! - Database connection established</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <span>1 row inserted - Rahul record added successfully</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-edit"></i>
+                                        <span>1 row updated - Rahul's city changed to Bangalore</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <span>1 row deleted - Rahul's record removed from database</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">02</div>
+                            <div class="program-info">
+                                <h3>ResultSet Navigation & Tabular Display</h3>
+                                <p>Advanced cursor movement and data formatting techniques</p>
+                            </div>
+                        </div>
+
+                        <div class="navigation-guide">
+                            <h4><i class="fas fa-compass"></i> ResultSet Navigation Methods</h4>
+                            <div class="navigation-grid">
+                                <div class="nav-method">
+                                    <div class="method-icon">
+                                        <i class="fas fa-step-forward"></i>
+                                    </div>
+                                    <h5>rs.first()</h5>
+                                    <p>Moves cursor to the first row of the ResultSet</p>
+                                </div>
+                                <div class="nav-method">
+                                    <div class="method-icon">
+                                        <i class="fas fa-step-backward"></i>
+                                    </div>
+                                    <h5>rs.last()</h5>
+                                    <p>Moves cursor to the last row of the ResultSet</p>
+                                </div>
+                                <div class="nav-method">
+                                    <div class="method-icon">
+                                        <i class="fas fa-crosshairs"></i>
+                                    </div>
+                                    <h5>rs.absolute(n)</h5>
+                                    <p>Moves cursor to the specified row number</p>
+                                </div>
+                                <div class="nav-method">
+                                    <div class="method-icon">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                    <h5>rs.next()</h5>
+                                    <p>Moves cursor to the next row in sequence</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="nav-code">Navigation Code</button>
+                                <button class="tab-btn" data-tab="resultset-types">ResultSet Types</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="nav-code">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> Mavenproject2.java - ResultSet Navigation</span>
+                                    <button class="copy-btn" onclick="copyCode('resultset-nav')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="resultset-nav"><code>package com.mycompany.mavenproject2;
+import java.sql.*;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        // Database connection parameters
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String user = "root";
+        String password = "";
+        
+        try {
+            // Step 1: Establish database connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, password);
+            
+            // Step 2: Create scrollable ResultSet
+            Statement stmt = con.createStatement(
+                ResultSet.TYPE_SCROLL_INSENSITIVE,  // Allows backward/forward movement
+                ResultSet.CONCUR_READ_ONLY          // Read-only access
+            );
+            
+            // Step 3: Execute query and get ResultSet
+            ResultSet rs = stmt.executeQuery("SELECT PersonID, FirstName, City FROM Person");
+            
+            // Step 4: Display data in tabular format
+            System.out.println("--------------------------------------------------");
+            System.out.printf("%-10s %-15s %-15s\n", "ID", "Name", "City");
+            System.out.println("--------------------------------------------------");
+            
+            // Step 5: Navigate to first record and display all
+            if (rs.first()) {
+                do {
+                    System.out.printf("%-10d %-15s %-15s\n",
+                        rs.getInt("PersonID"),      // Get integer value
+                        rs.getString("FirstName"),  // Get string value
+                        rs.getString("City")        // Get string value
+                    );
+                } while (rs.next());  // Move to next record
+            }
+            System.out.println("--------------------------------------------------");
+            
+            // Step 6: Demonstrate navigation methods
+            if (rs.last()) {
+                System.out.println("Last Record → " + rs.getString("FirstName"));
+            }
+            
+            if (rs.first()) {
+                System.out.println("First Record → " + rs.getString("FirstName"));
+            }
+            
+            if (rs.absolute(2)) {
+                System.out.println("2nd Row → " + rs.getString("FirstName"));
+            }
+            
+            // Step 7: Close resources
+            rs.close();
+            stmt.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="resultset-types">
+                                <div class="types-comparison">
+                                    <h5><i class="fas fa-layer-group"></i> ResultSet Types & Concurrency</h5>
+                                    <div class="comparison-table-container">
+                                        <table class="modern-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Description</th>
+                                                    <th>Navigation</th>
+                                                    <th>Updates</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>TYPE_FORWARD_ONLY</code></td>
+                                                    <td>Default type, cursor moves forward only</td>
+                                                    <td>next() only</td>
+                                                    <td>No</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>TYPE_SCROLL_INSENSITIVE</code></td>
+                                                    <td>Scrollable, not sensitive to changes</td>
+                                                    <td>All directions</td>
+                                                    <td>Depends on concurrency</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>TYPE_SCROLL_SENSITIVE</code></td>
+                                                    <td>Scrollable, sensitive to changes</td>
+                                                    <td>All directions</td>
+                                                    <td>Depends on concurrency</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <h5><i class="fas fa-lock"></i> Concurrency Modes</h5>
+                                    <div class="concurrency-grid">
+                                        <div class="concurrency-item">
+                                            <h6>CONCUR_READ_ONLY</h6>
+                                            <p>ResultSet cannot be updated, only read operations allowed</p>
+                                        </div>
+                                        <div class="concurrency-item">
+                                            <h6>CONCUR_UPDATABLE</h6>
+                                            <p>ResultSet can be updated using updateXXX() methods</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="key-concepts">
+                            <h4><i class="fas fa-key"></i> Key Implementation Concepts</h4>
+                            <div class="concepts-accordion">
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <i class="fas fa-table"></i>
+                                        <span>Tabular Formatting</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p><strong>printf() Method:</strong> Used for formatted output with column alignment</p>
+                                        <code>System.out.printf("%-10s %-15s %-15s\n", "ID", "Name", "City");</code>
+                                        <ul>
+                                            <li><code>%-10s</code> - Left-aligned string, 10 characters wide</li>
+                                            <li><code>%-15s</code> - Left-aligned string, 15 characters wide</li>
+                                            <li><code>\n</code> - New line character</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <span>Cursor Movement</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p><strong>Scrollable ResultSet:</strong> Allows bidirectional cursor movement</p>
+                                        <ul>
+                                            <li><strong>first():</strong> Returns true if successful, false if no rows</li>
+                                            <li><strong>last():</strong> Moves to last row, useful for getting total count</li>
+                                            <li><strong>absolute(n):</strong> Direct positioning to specific row number</li>
+                                            <li><strong>relative(n):</strong> Move n positions from current location</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 3 Content -->
+                <div class="week-content" id="week3">
+                    <div class="week3-banner">
+                        <div class="banner-content">
+                            <h2><i class="fas fa-code-branch"></i> Week 3: CallableStatement & Stored Procedures</h2>
+                            <p class="banner-subtitle">Master Advanced Database Programming with Stored Procedures</p>
+                            <div class="objectives-grid">
+                                <div class="objective-item">
+                                    <i class="fas fa-database"></i>
+                                    <span>Stored Procedures</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-phone"></i>
+                                    <span>CallableStatement</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>IN/OUT Parameters</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-image">
+                            <img src="Screenshot 2025-11-25 233440.png" alt="Week 3 Overview" onclick="openModal(this)">
+                        </div>
+                    </div>
+
+                    <div class="concept-overview">
+                        <h3><i class="fas fa-lightbulb"></i> Core Concepts Overview</h3>
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h4>Stored Procedures</h4>
+                                <p>Precompiled SQL code stored in database that can be executed multiple times with different parameters for better performance.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h4>CallableStatement</h4>
+                                <p>JDBC interface for executing stored procedures and functions with support for IN, OUT, and INOUT parameters.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h4>Parameter Types</h4>
+                                <p>Understanding IN (input), OUT (output), and INOUT (bidirectional) parameters for flexible procedure communication.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">01</div>
+                            <div class="program-info">
+                                <h3>Creating Stored Procedures</h3>
+                                <p>Database-side procedure creation and management</p>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="create-procedures">Create Procedures</button>
+                                <button class="tab-btn" data-tab="procedure-benefits">Benefits</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="create-procedures">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fas fa-database"></i> MySQL Stored Procedures</span>
+                                    <button class="copy-btn" onclick="copyCode('stored-procedures')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="stored-procedures"><code>-- Procedure 1: Simple IN parameter procedure
+DELIMITER //
+CREATE PROCEDURE GetStudentById(IN student_id INT)
+BEGIN
+    SELECT * FROM students WHERE id = student_id;
+END //
+DELIMITER ;
+
+-- Procedure 2: IN and OUT parameters
+DELIMITER //
+CREATE PROCEDURE GetStudentCount(IN min_age INT, OUT total_count INT)
+BEGIN
+    SELECT COUNT(*) INTO total_count 
+    FROM students 
+    WHERE age >= min_age;
+END //
+DELIMITER ;
+
+-- Procedure 3: Complex procedure with multiple operations
+DELIMITER //
+CREATE PROCEDURE ManageStudent(
+    IN action_type VARCHAR(10),
+    IN student_name VARCHAR(50),
+    IN student_age INT,
+    IN student_city VARCHAR(50),
+    OUT result_message VARCHAR(100)
+)
+BEGIN
+    DECLARE student_exists INT DEFAULT 0;
+    
+    IF action_type = 'INSERT' THEN
+        INSERT INTO students (name, age, city) 
+        VALUES (student_name, student_age, student_city);
+        SET result_message = 'Student added successfully';
+        
+    ELSEIF action_type = 'CHECK' THEN
+        SELECT COUNT(*) INTO student_exists 
+        FROM students 
+        WHERE name = student_name;
+        
+        IF student_exists > 0 THEN
+            SET result_message = 'Student exists in database';
+        ELSE
+            SET result_message = 'Student not found';
+        END IF;
+    END IF;
+END //
+DELIMITER ;</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="procedure-benefits">
+                                <div class="benefits-grid">
+                                    <div class="benefit-card">
+                                        <i class="fas fa-tachometer-alt"></i>
+                                        <h5>Performance</h5>
+                                        <p>Precompiled and cached execution plans</p>
+                                    </div>
+                                    <div class="benefit-card">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <h5>Security</h5>
+                                        <p>Controlled access and SQL injection prevention</p>
+                                    </div>
+                                    <div class="benefit-card">
+                                        <i class="fas fa-recycle"></i>
+                                        <h5>Reusability</h5>
+                                        <p>Multiple applications can use same procedures</p>
+                                    </div>
+                                    <div class="benefit-card">
+                                        <i class="fas fa-network-wired"></i>
+                                        <h5>Network Traffic</h5>
+                                        <p>Reduced data transfer between client and server</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">02</div>
+                            <div class="program-info">
+                                <h3>CallableStatement Implementation</h3>
+                                <p>Java code to execute stored procedures with parameters</p>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="callable-code">CallableStatement Code</button>
+                                <button class="tab-btn" data-tab="parameter-guide">Parameter Guide</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="callable-code">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> Mavenproject2.java - CallableStatement</span>
+                                    <button class="copy-btn" onclick="copyCode('callable-stmt')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="callable-stmt"><code>package com.mycompany.mavenproject2;
+import java.sql.*;
+
+public class Mavenproject2 {
+    public static void main(String[] args) {
+        // Database connection parameters
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        String user = "root";
+        String password = "";
+        
+        try {
+            // Step 1: Establish database connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to database!");
+            
+            // Step 2: Call procedure with IN parameter
+            System.out.println("\n=== Calling GetStudentById Procedure ===");
+            CallableStatement cs1 = con.prepareCall("{call GetStudentById(?)}");
+            cs1.setInt(1, 1); // Set student ID parameter
+            
+            ResultSet rs = cs1.executeQuery();
+            System.out.println("Student Details:");
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id"));
+                System.out.println("Name: " + rs.getString("name"));
+                System.out.println("Age: " + rs.getInt("age"));
+                System.out.println("City: " + rs.getString("city"));
+            }
+            
+            // Step 3: Call procedure with IN and OUT parameters
+            System.out.println("\n=== Calling GetStudentCount Procedure ===");
+            CallableStatement cs2 = con.prepareCall("{call GetStudentCount(?, ?)}");
+            cs2.setInt(1, 18);                          // IN parameter: minimum age
+            cs2.registerOutParameter(2, Types.INTEGER); // OUT parameter: count
+            
+            cs2.execute();
+            int studentCount = cs2.getInt(2); // Get OUT parameter value
+            System.out.println("Students aged 18 or above: " + studentCount);
+            
+            // Step 4: Call complex procedure with multiple parameters
+            System.out.println("\n=== Calling ManageStudent Procedure ===");
+            CallableStatement cs3 = con.prepareCall("{call ManageStudent(?, ?, ?, ?, ?)}");
+            
+            // Insert operation
+            cs3.setString(1, "INSERT");           // action_type
+            cs3.setString(2, "Priya Sharma");     // student_name
+            cs3.setInt(3, 22);                    // student_age
+            cs3.setString(4, "Mumbai");           // student_city
+            cs3.registerOutParameter(5, Types.VARCHAR); // result_message
+            
+            cs3.execute();
+            String insertResult = cs3.getString(5);
+            System.out.println("Insert Result: " + insertResult);
+            
+            // Check operation
+            cs3.setString(1, "CHECK");
+            cs3.setString(2, "Priya Sharma");
+            cs3.setString(3, null);
+            cs3.setString(4, null);
+            cs3.registerOutParameter(5, Types.VARCHAR);
+            
+            cs3.execute();
+            String checkResult = cs3.getString(5);
+            System.out.println("Check Result: " + checkResult);
+            
+            // Step 5: Close resources
+            rs.close();
+            cs1.close();
+            cs2.close();
+            cs3.close();
+            con.close();
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="parameter-guide">
+                                <div class="parameter-types">
+                                    <h5><i class="fas fa-exchange-alt"></i> Parameter Types Explained</h5>
+                                    <div class="comparison-table-container">
+                                        <table class="modern-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter Type</th>
+                                                    <th>Description</th>
+                                                    <th>Java Method</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>IN</strong></td>
+                                                    <td>Input values passed to procedure</td>
+                                                    <td>setXXX()</td>
+                                                    <td>cs.setInt(1, 101)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>OUT</strong></td>
+                                                    <td>Output values returned by procedure</td>
+                                                    <td>registerOutParameter() + getXXX()</td>
+                                                    <td>cs.registerOutParameter(2, Types.INTEGER)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>INOUT</strong></td>
+                                                    <td>Both input and output parameter</td>
+                                                    <td>setXXX() + registerOutParameter()</td>
+                                                    <td>cs.setInt(1, 101); cs.registerOutParameter(1, Types.INTEGER)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="output-showcase">
+                            <h4><i class="fas fa-terminal"></i> Program Output</h4>
+                            <div class="output-container">
+                                <div class="output-image">
+                                    <img src="Screenshot 2025-11-25 233500.png" alt="CallableStatement Output" onclick="openModal(this)">
+                                </div>
+                                <div class="output-details">
+                                    <h5>Expected Results:</h5>
+                                    <div class="result-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Connected to database! - Connection established</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-user"></i>
+                                        <span>Student Details retrieved via GetStudentById procedure</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-calculator"></i>
+                                        <span>Student count returned via GetStudentCount procedure</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-cogs"></i>
+                                        <span>ManageStudent procedure executed with INSERT and CHECK operations</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="additional-outputs">
+                            <h4><i class="fas fa-images"></i> Additional Program Screenshots</h4>
+                            <div class="screenshots-grid">
+                                <div class="screenshot-item">
+                                    <img src="Screenshot 2025-11-25 233520.png" alt="Stored Procedure Creation" onclick="openModal(this)">
+                                    <p>Stored Procedure Creation in MySQL</p>
+                                </div>
+                                <div class="screenshot-item">
+                                    <img src="Screenshot 2025-11-25 233540.png" alt="CallableStatement Execution" onclick="openModal(this)">
+                                    <p>CallableStatement Execution Results</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="learning-outcomes">
+                        <h3><i class="fas fa-graduation-cap"></i> Learning Achievements</h3>
+                        <div class="outcomes-grid">
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Stored Procedure Creation & Management</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>CallableStatement Implementation</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Parameter Handling (IN/OUT/INOUT)</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Advanced Database Programming</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Performance Optimization Techniques</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Enterprise-level Database Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 4 Content -->
+                <div class="week-content" id="week4">
+                    <div class="week4-banner">
+                        <div class="banner-content">
+                            <h2><i class="fas fa-server"></i> Week 4: Servlet Programming</h2>
+                            <p class="banner-subtitle">Master Web Development with Java Servlets & Deployment</p>
+                            <div class="objectives-grid">
+                                <div class="objective-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Basic Servlets</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>ServletConfig & Context</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-globe"></i>
+                                    <span>Web Deployment</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-image">
+                            <img src="Screenshot 2025-11-25 233600.png" alt="Week 4 Overview" onclick="openModal(this)">
+                        </div>
+                    </div>
+
+                    <div class="concept-overview">
+                        <h3><i class="fas fa-lightbulb"></i> Core Concepts Overview</h3>
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <h4>Java Servlets</h4>
+                                <p>Server-side Java programs that handle HTTP requests and generate dynamic web content for client browsers.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h4>ServletConfig & Context</h4>
+                                <p>Configuration objects providing servlet initialization parameters and application-wide context information.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-file-code"></i>
+                                </div>
+                                <h4>Web.xml Deployment</h4>
+                                <p>Deployment descriptor for configuring servlet mappings, initialization parameters, and web application settings.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">01</div>
+                            <div class="program-info">
+                                <h3>Basic Servlet Creation & Deployment</h3>
+                                <p>Creating and deploying servlets using web.xml configuration</p>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="servlet-code">Servlet Code</button>
+                                <button class="tab-btn" data-tab="web-xml">web.xml Configuration</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="servlet-code">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> HelloServlet.java</span>
+                                    <button class="copy-btn" onclick="copyCode('hello-servlet')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="hello-servlet"><code>package com.mycompany.servlets;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class HelloServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        // Set response content type
+        response.setContentType("text/html");
+        
+        // Get PrintWriter to send response
+        PrintWriter out = response.getWriter();
+        
+        // Generate HTML response
+        out.println("<h2>Hello from Basic Servlet!</h2>");
+        out.println("<p>This servlet is mapped using web.xml</p>");
+        out.println("<p><b>Roll Number:</b> 238W1A1269</p>");
+        out.println("<p><b>Developer:</b> Manoj Kumar</p>");
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="web-xml">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fas fa-file-code"></i> web.xml Configuration</span>
+                                    <button class="copy-btn" onclick="copyCode('web-xml-config')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="web-xml-config"><code><?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    
+    <!-- Servlet Declaration -->
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.HelloServlet</servlet-class>
+    </servlet>
+    
+    <!-- Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Welcome File List -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    
+</web-app></code></pre>
+                            </div>
+                        </div>
+
+                        <div class="output-showcase">
+                            <h4><i class="fas fa-globe"></i> Browser Output</h4>
+                            <div class="output-container">
+                                <div class="output-image">
+                                    <img src="Screenshot 2025-11-25 233620.png" alt="HelloServlet Output" onclick="openModal(this)">
+                                </div>
+                                <div class="output-details">
+                                    <h5>Expected Results:</h5>
+                                    <div class="result-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Hello from Basic Servlet! - Main heading displayed</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Servlet mapped using web.xml - Configuration message</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-user"></i>
+                                        <span>Roll Number: 238W1A1269 - Student identification</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-code"></i>
+                                        <span>Developer: Manoj Kumar - Developer information</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">02</div>
+                            <div class="program-info">
+                                <h3>ServletConfig & ServletContext Demo</h3>
+                                <p>Demonstrating servlet configuration and context usage</p>
+                            </div>
+                        </div>
+
+                        <div class="servlet-concepts">
+                            <h4><i class="fas fa-info-circle"></i> Key Concepts</h4>
+                            <div class="concepts-comparison">
+                                <div class="concept-item">
+                                    <div class="concept-header">
+                                        <i class="fas fa-cog"></i>
+                                        <h5>ServletConfig</h5>
+                                    </div>
+                                    <ul>
+                                        <li>Servlet-specific configuration</li>
+                                        <li>Initialization parameters per servlet</li>
+                                        <li>getInitParameter() method</li>
+                                        <li>One config object per servlet</li>
+                                    </ul>
+                                </div>
+                                <div class="concept-item">
+                                    <div class="concept-header">
+                                        <i class="fas fa-globe"></i>
+                                        <h5>ServletContext</h5>
+                                    </div>
+                                    <ul>
+                                        <li>Application-wide configuration</li>
+                                        <li>Shared across all servlets</li>
+                                        <li>Server information access</li>
+                                        <li>One context per web application</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="info-servlet">InfoServlet Code</button>
+                                <button class="tab-btn" data-tab="config-xml">Configuration XML</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="info-servlet">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> InfoServlet.java</span>
+                                    <button class="copy-btn" onclick="copyCode('info-servlet-code')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="info-servlet-code"><code>package com.mycompany.servlets;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class InfoServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        // Set response content type
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        
+        // ServletConfig example - servlet-specific parameters
+        ServletConfig config = getServletConfig();
+        String developerName = config.getInitParameter("developer");
+        String rollNumber = config.getInitParameter("rollNumber");
+        
+        // ServletContext example - application-wide parameters
+        ServletContext context = getServletContext();
+        String appName = context.getInitParameter("appName");
+        String version = context.getInitParameter("version");
+        
+        // Generate HTML response
+        out.println("<h2>ServletConfig & ServletContext Demo</h2>");
+        out.println("<hr>");
+        
+        out.println("<h3>ServletConfig Information:</h3>");
+        out.println("<p><b>Developer:</b> " + developerName + "</p>");
+        out.println("<p><b>Roll Number:</b> " + rollNumber + "</p>");
+        
+        out.println("<h3>ServletContext Information:</h3>");
+        out.println("<p><b>Application Name:</b> " + appName + "</p>");
+        out.println("<p><b>Version:</b> " + version + "</p>");
+        out.println("<p><b>Server Info:</b> " + context.getServerInfo() + "</p>");
+        out.println("<p><b>Servlet API Version:</b> " + context.getMajorVersion() + "." + context.getMinorVersion() + "</p>");
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="config-xml">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fas fa-file-code"></i> Updated web.xml</span>
+                                    <button class="copy-btn" onclick="copyCode('config-xml-code')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="config-xml-code"><code><?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    
+    <!-- Application-wide context parameters -->
+    <context-param>
+        <param-name>appName</param-name>
+        <param-value>Advanced Java Lab Application</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>version</param-name>
+        <param-value>1.0</param-value>
+    </context-param>
+    
+    <!-- HelloServlet Configuration -->
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.HelloServlet</servlet-class>
+    </servlet>
+    
+    <!-- InfoServlet Configuration with init parameters -->
+    <servlet>
+        <servlet-name>InfoServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.InfoServlet</servlet-class>
+        <init-param>
+            <param-name>developer</param-name>
+            <param-value>Manoj Kumar</param-value>
+        </init-param>
+        <init-param>
+            <param-name>rollNumber</param-name>
+            <param-value>238W1A1269</param-value>
+        </init-param>
+    </servlet>
+    
+    <!-- Servlet Mappings -->
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>InfoServlet</servlet-name>
+        <url-pattern>/info</url-pattern>
+    </servlet-mapping>
+    
+</web-app></code></pre>
+                            </div>
+                        </div>
+
+                        <div class="output-showcase">
+                            <h4><i class="fas fa-globe"></i> Browser Output</h4>
+                            <div class="output-container">
+                                <div class="output-image">
+                                    <img src="Screenshot 2025-11-25 233640.png" alt="InfoServlet Output" onclick="openModal(this)">
+                                </div>
+                                <div class="output-details">
+                                    <h5>Expected Results:</h5>
+                                    <div class="result-item">
+                                        <i class="fas fa-user"></i>
+                                        <span>Developer: Manoj Kumar (from ServletConfig)</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>Roll Number: 238W1A1269 (from ServletConfig)</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-app"></i>
+                                        <span>Application Name: Advanced Java Lab Application (from ServletContext)</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-server"></i>
+                                        <span>Server Info: Apache Tomcat version details</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="deployment-guide">
+                        <h3><i class="fas fa-rocket"></i> Deployment Guide</h3>
+                        <div class="deployment-steps">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Project Structure</h4>
+                                    <div class="file-structure">
+                                        <code>WebApp/</code><br>
+                                        <code>├── WEB-INF/</code><br>
+                                        <code>│   ├── web.xml</code><br>
+                                        <code>│   └── classes/</code><br>
+                                        <code>│       └── com/mycompany/servlets/</code><br>
+                                        <code>│           ├── HelloServlet.class</code><br>
+                                        <code>│           └── InfoServlet.class</code><br>
+                                        <code>└── index.html</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Compilation</h4>
+                                    <code>javac -cp "path/to/servlet-api.jar" *.java</code>
+                                </div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Deployment</h4>
+                                    <p>Copy WebApp folder to Tomcat's webapps directory</p>
+                                </div>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Access URLs</h4>
+                                    <code>http://localhost:8080/WebApp/hello</code><br>
+                                    <code>http://localhost:8080/WebApp/info</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="learning-outcomes">
+                        <h3><i class="fas fa-graduation-cap"></i> Learning Achievements</h3>
+                        <div class="outcomes-grid">
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Servlet Lifecycle Understanding</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>HTTP Request/Response Handling</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Web.xml Configuration Mastery</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>ServletConfig Implementation</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>ServletContext Usage</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Web Application Deployment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 5 Content -->
+                <div class="week-content" id="week5">
+                    <div class="week5-banner">
+                        <div class="banner-content">
+                            <h2><i class="fas fa-exchange-alt"></i> Week 5: Request Handling & Forwarding</h2>
+                            <p class="banner-subtitle">Master RequestDispatcher, sendRedirect & Attribute Passing</p>
+                            <div class="objectives-grid">
+                                <div class="objective-item">
+                                    <i class="fas fa-share"></i>
+                                    <span>RequestDispatcher</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>sendRedirect</span>
+                                </div>
+                                <div class="objective-item">
+                                    <i class="fas fa-tags"></i>
+                                    <span>Attribute Passing</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-image">
+                            <img src="Screenshot 2025-11-25 233700.png" alt="Week 5 Overview" onclick="openModal(this)">
+                        </div>
+                    </div>
+
+                    <div class="concept-overview">
+                        <h3><i class="fas fa-lightbulb"></i> Core Concepts Overview</h3>
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-share"></i>
+                                </div>
+                                <h4>RequestDispatcher</h4>
+                                <p>Server-side forwarding mechanism that transfers control to another servlet while maintaining request attributes and parameters.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                                <h4>sendRedirect</h4>
+                                <p>Client-side redirection that sends HTTP redirect response to browser, creating a new request to the target URL.</p>
+                            </div>
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-tags"></i>
+                                </div>
+                                <h4>Attribute Passing</h4>
+                                <p>Mechanism to share data between servlets using request attributes with setAttribute() and getAttribute() methods.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-section">
+                        <h3><i class="fas fa-balance-scale"></i> Forward vs Redirect Comparison</h3>
+                        <div class="comparison-table-container">
+                            <table class="modern-table">
+                                <thead>
+                                    <tr>
+                                        <th>Aspect</th>
+                                        <th>RequestDispatcher (Forward)</th>
+                                        <th>sendRedirect</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Location</strong></td>
+                                        <td>Server-side</td>
+                                        <td>Client-side</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>URL Change</strong></td>
+                                        <td>No change in browser URL</td>
+                                        <td>URL changes in browser</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Request Object</strong></td>
+                                        <td>Same request object</td>
+                                        <td>New request object</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Attributes</strong></td>
+                                        <td>Attributes preserved</td>
+                                        <td>Attributes lost</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Performance</strong></td>
+                                        <td>Faster (single request)</td>
+                                        <td>Slower (two requests)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">01</div>
+                            <div class="program-info">
+                                <h3>RequestDispatcher & sendRedirect Demo</h3>
+                                <p>Demonstrating forward and redirect mechanisms</p>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="first-servlet">FirstServlet</button>
+                                <button class="tab-btn" data-tab="forward-servlet">ForwardServlet</button>
+                                <button class="tab-btn" data-tab="redirect-servlet">RedirectServlet</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="first-servlet">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> FirstServlet.java</span>
+                                    <button class="copy-btn" onclick="copyCode('first-servlet-code')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="first-servlet-code"><code>package com.mycompany.servlets;
+import java.io.IOException;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class FirstServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        
+        // Set attribute to pass data to forwarded servlet
+        req.setAttribute("message", "Forwarded using RequestDispatcher!");
+        req.setAttribute("rollNumber", "238W1A1269");
+        req.setAttribute("developer", "Manoj Kumar");
+        
+        // Get RequestDispatcher for forwarding
+        RequestDispatcher rd = req.getRequestDispatcher("forward");
+        
+        // Forward request to ForwardServlet
+        rd.forward(req, res);
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="forward-servlet">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> ForwardServlet.java</span>
+                                    <button class="copy-btn" onclick="copyCode('forward-servlet-code')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="forward-servlet-code"><code>package com.mycompany.servlets;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class ForwardServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        
+        // Set response content type
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        
+        // Retrieve attributes set by FirstServlet
+        String msg = (String) req.getAttribute("message");
+        String rollNumber = (String) req.getAttribute("rollNumber");
+        String developer = (String) req.getAttribute("developer");
+        
+        // Generate HTML response
+        out.println("<h2>Forward Servlet</h2>");
+        out.println("<hr>");
+        out.println("<p><b>Message:</b> " + msg + "</p>");
+        out.println("<p><b>Roll Number:</b> " + rollNumber + "</p>");
+        out.println("<p><b>Developer:</b> " + developer + "</p>");
+        out.println("<p><i>Note: URL remains same as FirstServlet</i></p>");
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="redirect-servlet">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> RedirectServlet.java</span>
+                                    <button class="copy-btn" onclick="copyCode('redirect-servlet-code')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="redirect-servlet-code"><code>package com.mycompany.servlets;
+import java.io.IOException;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class RedirectServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        // Redirect to external URL (Google)
+        // This creates a new request from client browser
+        response.sendRedirect("https://www.google.com");
+        
+        // Alternative: Redirect to another servlet in same application
+        // response.sendRedirect("forward");
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="output-showcase">
+                            <h4><i class="fas fa-globe"></i> Program Output</h4>
+                            <div class="output-container">
+                                <div class="output-image">
+                                    <img src="Screenshot 2025-11-25 233720.png" alt="Forward Output" onclick="openModal(this)">
+                                </div>
+                                <div class="output-details">
+                                    <h5>Forward Results:</h5>
+                                    <div class="result-item">
+                                        <i class="fas fa-share"></i>
+                                        <span>Message: Forwarded using RequestDispatcher!</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>Roll Number: 238W1A1269</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-user"></i>
+                                        <span>Developer: Manoj Kumar</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-link"></i>
+                                        <span>URL remains: /first (no change)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="program-section">
+                        <div class="program-header">
+                            <div class="program-number">02</div>
+                            <div class="program-info">
+                                <h3>Attribute Passing Between Servlets</h3>
+                                <p>Demonstrating data sharing using setAttribute and getAttribute</p>
+                            </div>
+                        </div>
+
+                        <div class="code-showcase">
+                            <div class="code-tabs">
+                                <button class="tab-btn active" data-tab="attribute-sender">AttributeSender</button>
+                                <button class="tab-btn" data-tab="show-attributes">ShowAttributes</button>
+                                <button class="tab-btn" data-tab="web-xml-week5">web.xml</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="attribute-sender">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> AttributeSender.java</span>
+                                    <button class="copy-btn" onclick="copyCode('attribute-sender-code')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="attribute-sender-code"><code>package com.mycompany.servlets;
+import java.io.IOException;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class AttributeSender extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        
+        // Set multiple attributes to pass data
+        req.setAttribute("studentName", "Bharath");
+        req.setAttribute("course", "Advanced Java");
+        req.setAttribute("rollNumber", "238W1A1269");
+        req.setAttribute("semester", "6th Semester");
+        req.setAttribute("college", "Engineering College");
+        
+        // Forward request to ShowAttributes servlet
+        RequestDispatcher rd = req.getRequestDispatcher("showAttributes");
+        rd.forward(req, res);
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="show-attributes">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fab fa-java"></i> ShowAttributes.java</span>
+                                    <button class="copy-btn" onclick="copyCode('show-attributes-code')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="show-attributes-code"><code>package com.mycompany.servlets;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class ShowAttributes extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        
+        // Set response content type
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        
+        // Retrieve all attributes set by AttributeSender
+        String name = (String) req.getAttribute("studentName");
+        String course = (String) req.getAttribute("course");
+        String rollNumber = (String) req.getAttribute("rollNumber");
+        String semester = (String) req.getAttribute("semester");
+        String college = (String) req.getAttribute("college");
+        
+        // Generate HTML response with received attributes
+        out.println("<h2>Received Attributes</h2>");
+        out.println("<hr>");
+        out.println("<table border='1' cellpadding='10'>");
+        out.println("<tr><th>Attribute</th><th>Value</th></tr>");
+        out.println("<tr><td>Student Name</td><td>" + name + "</td></tr>");
+        out.println("<tr><td>Course</td><td>" + course + "</td></tr>");
+        out.println("<tr><td>Roll Number</td><td>" + rollNumber + "</td></tr>");
+        out.println("<tr><td>Semester</td><td>" + semester + "</td></tr>");
+        out.println("<tr><td>College</td><td>" + college + "</td></tr>");
+        out.println("</table>");
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="tab-content" id="web-xml-week5">
+                                <div class="code-header">
+                                    <span class="code-title"><i class="fas fa-file-code"></i> web.xml Configuration</span>
+                                    <button class="copy-btn" onclick="copyCode('web-xml-week5-code')"><i class="fas fa-copy"></i> Copy</button>
+                                </div>
+                                <pre class="code-block" id="web-xml-week5-code"><code><?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    
+    <!-- FirstServlet -->
+    <servlet>
+        <servlet-name>FirstServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.FirstServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirstServlet</servlet-name>
+        <url-pattern>/first</url-pattern>
+    </servlet-mapping>
+    
+    <!-- ForwardServlet -->
+    <servlet>
+        <servlet-name>ForwardServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.ForwardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForwardServlet</servlet-name>
+        <url-pattern>/forward</url-pattern>
+    </servlet-mapping>
+    
+    <!-- RedirectServlet -->
+    <servlet>
+        <servlet-name>RedirectServlet</servlet-name>
+        <servlet-class>com.mycompany.servlets.RedirectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RedirectServlet</servlet-name>
+        <url-pattern>/redirect</url-pattern>
+    </servlet-mapping>
+    
+    <!-- AttributeSender -->
+    <servlet>
+        <servlet-name>AttributeSender</servlet-name>
+        <servlet-class>com.mycompany.servlets.AttributeSender</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AttributeSender</servlet-name>
+        <url-pattern>/sender</url-pattern>
+    </servlet-mapping>
+    
+    <!-- ShowAttributes -->
+    <servlet>
+        <servlet-name>ShowAttributes</servlet-name>
+        <servlet-class>com.mycompany.servlets.ShowAttributes</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAttributes</servlet-name>
+        <url-pattern>/showAttributes</url-pattern>
+    </servlet-mapping>
+    
+</web-app></code></pre>
+                            </div>
+                        </div>
+
+                        <div class="output-showcase">
+                            <h4><i class="fas fa-globe"></i> Attributes Output</h4>
+                            <div class="output-container">
+                                <div class="output-image">
+                                    <img src="Screenshot 2025-11-25 233740.png" alt="Attributes Output" onclick="openModal(this)">
+                                </div>
+                                <div class="output-details">
+                                    <h5>Attributes Results:</h5>
+                                    <div class="result-item">
+                                        <i class="fas fa-user"></i>
+                                        <span>Student Name: Bharath</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>Course: Advanced Java</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>Roll Number: 238W1A1269</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Semester: 6th Semester</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="learning-outcomes">
+                        <h3><i class="fas fa-graduation-cap"></i> Learning Achievements</h3>
+                        <div class="outcomes-grid">
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>RequestDispatcher Implementation</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>sendRedirect Usage</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Forward vs Redirect Understanding</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Attribute Passing Mastery</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Request Object Manipulation</span>
+                            </div>
+                            <div class="outcome-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Inter-Servlet Communication</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students Section -->
+                <div class="week-content" id="students">
+                    <div class="question-card">
+                        <h3><i class="fas fa-users"></i> Student Records Management</h3>
+                        <div class="search-bar">
+                            <input type="text" id="search-input" placeholder="Search students...">
+                            <select id="filter-course">
+                                <option value="">All Courses</option>
+                            </select>
+                        </div>
+                        <div class="table-container">
+                            <table class="comparison-table" id="students-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>City</th>
+                                        <th>Email</th>
+                                        <th>Course</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="students-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Student Section -->
+                <div class="week-content" id="add-student">
+                    <div class="question-card">
+                        <h3><i class="fas fa-user-plus"></i> Add New Student Record</h3>
+                        <form id="student-form" class="student-form">
+                            <div class="form-grid">
+                                <input type="text" id="name" placeholder="Full Name" required>
+                                <input type="number" id="age" placeholder="Age" min="16" max="100" required>
+                                <input type="text" id="city" placeholder="City" required>
+                                <input type="email" id="email" placeholder="Email" required>
+                                <input type="tel" id="phone" placeholder="Phone (10 digits)" pattern="[0-9]{10}" required>
+                                <select id="course" required>
+                                    <option value="">Select Course</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary">Add Student</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Advanced Java Records - Manoj Kumar (238W1A1267). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Screenshot">
+        </div>
+    </div>
+
+    <div class="ai-chat" id="ai-chat">
+        <div class="chat-header">
+            <span>AI Assistant</span>
+            <button id="chat-close">×</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="ai-message">Hello! I'm here to help with your student records.</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chat-input" placeholder="Ask me anything...">
+            <button id="send-message">Send</button>
+        </div>
+    </div>
+
+    <button class="chat-fab" id="chat-fab">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <h3>Edit Student</h3>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                <input type="text" id="edit-name" placeholder="Name" required>
+                <input type="number" id="edit-age" placeholder="Age" required>
+                <input type="text" id="edit-city" placeholder="City" required>
+                <input type="email" id="edit-email" placeholder="Email" required>
+                <input type="tel" id="edit-phone" placeholder="Phone" required>
+                <select id="edit-course" required>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Mechanical">Mechanical</option>
+                </select>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary">Update</button>
+                    <button type="button" id="cancel-edit" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
